@@ -28,7 +28,9 @@ main
 		lsr		r1, r1, #2							;lines up r2 again
 		mov		r3, #10								;initializes counter
 		
-shift	lsrs		r1, r1, #1		;this subrutine shifts bits from r1 into r2
+shift	
+
+		lsrs		r1, r1, #1
 		lsr		r2, r2, #1
 		subs		r3, r3, #1
 		bne		shift
@@ -36,18 +38,16 @@ shift	lsrs		r1, r1, #1		;this subrutine shifts bits from r1 into r2
 		adr		r0, floats
 		ldr		r6, [r0], #4
 		ldr		r7, [r0]
-		lsr		r6, r6, #23		;clears fraction
-		lsr		r7, r7, #23		;clears fraction
-		lsr		r4, r6, #8		;clears exponent
-		lsr		r5, r7, #8		;clears exponent
-		eors		r3, r4, r5		;subtracts sign bits
-		addne	r1, r1, #0x80000000	;adds sign bit if only one operand was negative
-		bic		r6, r6, #0x100		;clears sign bit
-		bic		r7, r7, #0x100		;clears sign bit
-		add		r6, r6, r7		;adds exponents
-		sub		r6, r6, #0x7f		;subtracts 127 from exponents to acount for bias
-		lsl		r6, r6, #20		;lines up exponents
-		add		r1, r1, r6		;adds exponent to finish
+		lsr		r6, r6, #23		
+		lsr		r7, r7, #23		
+		lsr		r4, r6, #8	
+		lsr		r5, r7, #8		
+		eors		r3, r4, r5		
+		
+		add		r6, r6, r7
+		sub		r6, r6, #0x7f		
+		lsl		r6, r6, #20
+		add		r1, r1, r6
 		adr		r0, result
 		str		r1, [r0], #4
 		str		r2, [r0]
