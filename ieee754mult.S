@@ -17,18 +17,16 @@ main
 		ldr		r1, [r0], #4							; load first number into address r1
 		ldr		r2, [r0], #8							; load second number into address r2
 		adr		r0, result							; r0 no longer needed, get ready to put answer into r0
-		lsl		r1, r1, #9							;Clear exponent
-		lsr		r3, r1, #1							;
-		add		r3, r3, #0x80000000
+		lsl		r1, r1, #9							;isolate whole number
+		lsr		r3, r1, #1							;move back 1
 		lsl		r2, r2, #9
 		lsr		r4, r2, #1
-		add		r4, r4, #0x80000000
-		mov		r5, #10
-		bl		multiply
-		mov		r2, r3			;places top half in r1, and bottom half in r2
-		lsl		r1, r1, #2		;gets rid of understood bits
-		lsr		r1, r1, #2		;lines up r2 again
-		mov		r3, #10			;initializes counter
+		mov		r5, #10								; counter
+		bl		multiply							;branch to multiply instruction
+		mov		r2, r3								;places top half in r1, and bottom half in r2
+		lsl		r1, r1, #2							;gets rid of understood bits
+		lsr		r1, r1, #2							;lines up r2 again
+		mov		r3, #10								;initializes counter
 		
 shift	lsrs		r1, r1, #1		;this subrutine shifts bits from r1 into r2
 		lsr		r2, r2, #1
