@@ -10,7 +10,7 @@
 		
 floats	DCD		0xa0bcff0d, 0x13c0adea
 result	FILL		8
-link		FILL		4
+space		FILL		4
 		
 main
 		adr		r0, floats 							; get ready to load  numbers into adress
@@ -55,7 +55,7 @@ shift
 		end
 		
 multiply
-		adr		r0, link
+		adr		r0, space
 		str		lr, [r0]
 		
 		
@@ -90,7 +90,7 @@ multiply
 		addcs	r1, r1, #0x10000	;add in carry from above
 		adds		r3, r3, r2, lsl #16	;LSB 32 bits
 		adc		r1, r1, r2, lsr #16	;MSB 32 bits
-		adr		r0, link
+		adr		r0, space
 		ldr		lr, [r0]
 		mov		pc, lr
 		
