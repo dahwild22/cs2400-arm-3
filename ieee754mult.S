@@ -30,7 +30,6 @@ main
 		
 shift	lsrs		r1, r1, #1		;this subrutine shifts bits from r1 into r2
 		lsr		r2, r2, #1
-		addcs	r2, r2, #0x80000000
 		subs		r3, r3, #1
 		bne		shift
 		
