@@ -26,7 +26,6 @@ main
 		mov		r2, r3								;places top half in r1, and bottom half in r2
 		lsl		r1, r1, #2							;gets rid of understood bits
 		lsr		r1, r1, #2							;lines up r2 again
-		mov		r3, #10								;initializes counter
 		
 shift
 		
